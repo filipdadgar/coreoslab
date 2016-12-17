@@ -1,6 +1,9 @@
 #cloud-config
 hostname: "CoreVM01"
 coreos:
+  etcd:
+    addr: $private_ipv4:4001
+    peer-addr: $private_ipv4:7001
   units:
     - name: etcd2.service
       command: start
