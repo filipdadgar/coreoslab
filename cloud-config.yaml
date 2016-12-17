@@ -10,7 +10,7 @@ coreos:
     - name: fleet.service
       command: start
     - name: 00-ens192.network
-      runtime: true
+#      runtime: true
       content: |
         [Match]
         Name=ens192
