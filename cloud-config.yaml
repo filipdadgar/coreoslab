@@ -1,0 +1,12 @@
+#cloud-config
+hostname: "CoreVM01"
+coreos:
+  units:
+    - name: etcd2.service
+      command: start
+    - name: fleet.service
+      command: start
+users:
+  - name: core
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCCYZcYqHzxKRvq/XWA4049Q1jh22+4SjzNJCBK8Uk5e26FfiGudKCsu8D8wI80Ug1fEAFzMWGAkH5XJxp8pQ2eTPA3ua8YSvS8tnW8FKk2DovxvfY1UJw9IzyH5NUUz6mo5n+8DBTDkfVFDGZubWRu/2qCSmMEGvTGH0RmlJGlLg5hA/gYqLJPRNAys9OK9bOFucGCzAv6LAZ6ro4Bqc8CsvhgzUvsc4IBLlmtoAJB57on23AcF8HLaR2pxnpU7fmEM6OUYAb2KJeWY6or+MaHLxQLnYj6/1DMkokCoyvqbBuwcdOMmhyyy9zPVPNSV4SwY7lL79hWqLnj9GuxuiSZ imported-openssh-key
