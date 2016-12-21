@@ -1,25 +1,28 @@
 #cloud-config
-hostname: "CoreVM01"
+
+# include one or more SSH public keys
+ssh_authorized_keys:
+  - ssh-rsa 
+
 coreos:
-  etcd:
-    addr: $private_ipv4:4001
-    peer-addr: $private_ipv4:7001
   units:
-    - name: etcd2.service
-      command: start
-    - name: fleet.service
-      command: start
-    - name: 00-ens192.network
-#      runtime: true
+    - name: es-srv-04.network
+      runtime: true
       content: |
         [Match]
-        Name=ens192
+        MACAddress=a0:36:9f:b2:85:2e
 
         [Network]
-        DNS=192.168.1.12
-        Address=192.168.1.31/24
-        Gateway=192.168.1.1
-users:
-  - name: core
-    ssh-authorized-keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCCYZcYqHzxKRvq/XWA4049Q1jh22+4SjzNJCBK8Uk5e26FfiGudKCsu8D8wI80Ug1fEAFzMWGAkH5XJxp8pQ2eTPA3ua8YSvS8tnW8FKk2DovxvfY1UJw9IzyH5NUUz6mo5n+8DBTDkfVFDGZubWRu/2qCSmMEGvTGH0RmlJGlLg5hA/gYqLJPRNAys9OK9bOFucGCzAv6LAZ6ro4Bqc8CsvhgzUvsc4IBLlmtoAJB57on23AcF8HLaR2pxnpU7fmEM6OUYAb2KJeWY6or+MaHLxQLnYj6/1DMkokCoyvqbBuwcdOMmhyyy9zPVPNSV4SwY7lL79hWqLnj9GuxuiSZ imported-openssh-key
+        DNS=10.51.128.126
+        Address=10.51.135.4/24
+        Gateway=10.51.135.254
+    - name: es-srv-03.network
+      runtime: true
+      content: |
+        [Match]
+        MACAddress=a0:36:9f:80:ea:62
+
+        [Network]
+        DNS=10.51.128.126
+        Address=10.51.135.3/24
+        Gateway=10.51.135.254
